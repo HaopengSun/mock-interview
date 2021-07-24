@@ -14,7 +14,13 @@ const fetchUserInfo = function(){
 const getFullUserName = userInfo => {
   if (userInfo.length === 0) return ''
   let {title, first, last} = userInfo.name
-  return `${title} ${first} ${last}`
+  let userPic = userInfo.picture.thumbnail
+  return (
+    <div>
+      <p> {title} {first} {last} </p>
+      <img src={userPic} alt="thumbnail"/>
+    </div>
+  )
 }
 
 const RandomUser = function () {
