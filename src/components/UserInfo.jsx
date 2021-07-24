@@ -1,8 +1,8 @@
 import {useState, useEffect} from "react"
 import axios from "axios"
 
-const fetchUserInfo = function(){
-  return axios.get('https://randomuser.me/api/')
+const fetchUserInfo = function(pageNumber = 1){
+  return axios.get(`https://randomuser.me/api?page=${pageNumber}`)
   .then(function (response) {
     return response
   })
@@ -25,19 +25,21 @@ const getFullUserName = userInfo => {
 
 const RandomUser = function () {
   const [userInfo, setUserInfo] = useState([])
+  const [nextPage, setNextPage] = useState(1)
 
   useEffect(() => {
-    fetchUserInfo().then((data) => {
+    fetchUserInfo(nextPage).then((data) => {
       setUserInfo([...userInfo, data.data.results[0]])
     })
   }
-  , [])
+  , [nextPage])
   
   return (
     <div>
       {userInfo.map((info) => {
         return getFullUserName(info)
       })}
+      <button onClick={() => setNextPage(nextPage + 1)}>next page</button>
     </div>
   )
 }
