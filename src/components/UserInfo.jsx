@@ -23,6 +23,7 @@ const RandomUser = function () {
 
   useEffect(() => {
     fetchUserInfo().then(data => {
+      // object can be displayed and it needs to be transfered to json
       setUserInfo(data.data.results[0].name)
     })
   }
