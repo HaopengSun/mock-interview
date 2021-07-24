@@ -11,10 +11,13 @@ const fetchUserInfo = function(){
   })
 }
 
-const getFullUserName = userInfo => {
-  const {name: {first, last}} = userInfo
-  return `${first} ${last}`
-}
+// const getFullUserName = userInfo => {
+//   if (userInfo.length === 0) return ''
+//   userInfo.map(info => {
+//     let {title, first, last} = info
+//     return `<p>${title} ${first} ${last}</p>`
+//   })
+// }
 
 // name: {title: "Ms", first: "Emma", last: "Sørensen"}
 
@@ -23,19 +26,17 @@ const RandomUser = function () {
 
   useEffect(() => {
     fetchUserInfo().then(data => {
-      // object can be displayed and it needs to be transfered to json
-      setUserInfo(data.data.results[0].name)
+      setUserInfo([...userInfo, data.data.results[0].name])
     })
   }
   , [])
-
-  console.log(userInfo)
-
+  
   return (
     <div>
-      {/* {userInfo.map(info => {
-        return <p>{info}</p>
-      })} */}
+      {userInfo.map(info => {
+        let {title, first, last} = info
+        return `${title} ${first} ${last}`
+      })}
     </div>
   )
 }
