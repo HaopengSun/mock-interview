@@ -11,31 +11,26 @@ const fetchUserInfo = function(){
   })
 }
 
-// const getFullUserName = userInfo => {
-//   if (userInfo.length === 0) return ''
-//   userInfo.map(info => {
-//     let {title, first, last} = info
-//     return `<p>${title} ${first} ${last}</p>`
-//   })
-// }
-
-// name: {title: "Ms", first: "Emma", last: "Sørensen"}
+const getFullUserName = userInfo => {
+  if (userInfo.length === 0) return ''
+  let {title, first, last} = userInfo.name
+  return `${title} ${first} ${last}`
+}
 
 const RandomUser = function () {
   const [userInfo, setUserInfo] = useState([])
 
   useEffect(() => {
-    fetchUserInfo().then(data => {
-      setUserInfo([...userInfo, data.data.results[0].name])
+    fetchUserInfo().then((data) => {
+      setUserInfo([...userInfo, data.data.results[0]])
     })
   }
   , [])
   
   return (
     <div>
-      {userInfo.map(info => {
-        let {title, first, last} = info
-        return `${title} ${first} ${last}`
+      {userInfo.map((info) => {
+        return getFullUserName(info)
       })}
     </div>
   )
