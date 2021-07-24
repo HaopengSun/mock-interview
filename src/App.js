@@ -2,14 +2,15 @@ import './App.css';
 import Incremental from './components/Increment'
 import RandomUser from './components/RandomUser'
 import NameCollection from './components/NameCollection'
+import UserInfo from './components/UserInfo'
 
 function App() {
   return (
     <div className="App">
-      <h3>incremental</h3>
-      <NameCollection />
-      <Incremental />
-      <RandomUser />
+      {/* <NameCollection /> */}
+      {/* <Incremental /> */}
+      {/* <RandomUser /> */}
+      <UserInfo />
     </div>
   );
 }

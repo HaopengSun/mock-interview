@@ -13,7 +13,7 @@ const fetchRamdomUser = function(){
 
 const NameCollection = function () {
   const [randomName, setRandomName] = useState([])
-
+  
   useEffect(() => {
     fetchRamdomUser().then(data => {
       setRandomName([...randomName, data])
