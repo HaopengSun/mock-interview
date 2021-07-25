@@ -5,7 +5,10 @@ const displayLocations = function(data){
   const {number, name} = streetName
   console.log(number, name)
   return (
-    <li>{number} {name}</li>
+    <tr>
+      <th>{number}</th>
+      <th>{name}</th>
+    </tr>
   )
 }
 
@@ -14,11 +17,13 @@ export default Location = function(props){
 
   return (
     <div>
-      <lu>
-        {locations.map(location => {
-          return displayLocations(location)
-        })}
-      </lu>
+      <tr>
+        <th>Street Number</th>
+        <th>Street Name</th>
+      </tr>
+      {locations.map(location => {
+        return displayLocations(location)
+      })}
     </div>
   )
 }
