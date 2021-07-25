@@ -36,10 +36,10 @@ const RandomUser = function () {
   
   return (
     <div>
+    <button onClick={() => setNextPage(nextPage + 1)}>next page</button>
       {userInfo.map((info) => {
         return getFullUserName(info)
       })}
-      <button onClick={() => setNextPage(nextPage + 1)}>next page</button>
     </div>
   )
 }
