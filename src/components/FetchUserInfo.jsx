@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react"
 import axios from "axios"
+import Locations from './Locations'
 
 const fetchData = function(){
   return axios.get('https://randomuser.me/api/?results=10')
@@ -13,18 +14,18 @@ const fetchData = function(){
 }
 
 const FetchUserInfo = function(){
-  const [userInfo, setUserInfo] = useState('')
+  const [userInfo, setUserInfo] = useState([])
 
   useEffect(() => {
     fetchData().then((data) => {
-      setUserInfo(JSON.stringify(data))
+      setUserInfo(data.data.results)
     })
   }, [])
 
   return (
   <div>
     <p>Fetch user info</p>
-    {userInfo}
+    <Locations userInfo={userInfo || []}/>
   </div>
   )
 }
